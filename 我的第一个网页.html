@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我们的网站 | 蓄谋已久的策划</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', 'Arial', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* 动态背景粒子效果 */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25% 50%, rgba(255,255,255,0.1) 1%, transparent 1%);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+
+        /* 主卡片容器 */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 3rem;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 头部区域 */
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .logo svg {
+            width: 45px;
+            height: 45px;
+            fill: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #764ba2;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        /* 主内容区域 */
+        main {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .greeting {
+            font-size: 1.8rem;
+            color: #333;
+            margin: 1.5rem 0;
+            line-height: 1.4;
+        }
+
+        .greeting .emoji {
+            display: inline-block;
+            animation: wave 1.5s ease-in-out infinite;
+            transform-origin: 70% 70%;
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(20deg);
+            }
+            75% {
+                transform: rotate(-15deg);
+            }
+        }
+
+        .message-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #764ba2;
+            text-align: left;
+        }
+
+        .message-box p {
+            color: #495057;
+            line-height: 1.8;
+            margin: 0.8rem 0;
+            font-size: 1rem;
+        }
+
+        .message-box p:first-child {
+            margin-top: 0;
+        }
+
+        .message-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #f3e7ff 0%, #f3e7ff 40%, transparent 60%);
+            padding: 0 0.2rem;
+            font-weight: 600;
+            color: #764ba2;
+        }
+
+        /* 成功标志 */
+        .success-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(118, 75, 162, 0.1);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #764ba2;
+        }
+
+        .success-badge svg {
+            width: 18px;
+            height: 18px;
+            fill: #764ba2;
+        }
+
+        /* 底部区域 */
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .wish {
+            font-size: 1.1rem;
+            color: #495057;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .heart {
+            color: #ff6b6b;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* 装饰元素 */
+        .decoration {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .decoration svg {
+            width: 100px;
+            height: 100px;
+            fill: rgba(255, 255, 255, 0.2);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .greeting {
+                font-size: 1.3rem;
+            }
+            
+            .message-box {
+                padding: 1rem;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo svg {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 装饰元素 -->
+    <div class="decoration">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z"/>
+        </svg>
+    </div>
+
+    <div class="card">
+        <header>
+            <div class="logo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"/>
+                    <path d="M22 6L12 13L2 6" stroke="white" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+            <h1>我们的网站</h1>
+            <div class="subtitle">✨ 梦想开始的地方 ✨</div>
+        </header>
+
+        <main>
+            <div class="greeting">
+                Hello, <strong>QHY</strong>! 
+                <span class="emoji">👋</span>
+                <br>
+                <span style="font-size: 1.5rem;">嘻嘻</span>
+                <span class="emoji">😊</span>
+            </div>
+
+            <div class="message-box">
+                <p>这是由 <span class="highlight">cjx</span> 创建的默认页面。</p>
+                <p>我将在这个网站完成一项 <span class="highlight">蓄谋已久但迟迟未发动的策划</span></p>
+                <div class="success-badge">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z"/>
+                    </svg>
+                    <span>虽然很简陋，但是也是第一步成功了，嘴笑烂了</span>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="wish">
+                <span class="heart">❤️</span>
+                就先提前祝你面试成功吧！！！
+                <span class="heart">❤️</span>
+            </div>
+            <div style="font-size: 0.8rem; margin-top: 1rem; color: #6c757d;">
+                ⭐ 每一步都值得被纪念 ⭐
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
